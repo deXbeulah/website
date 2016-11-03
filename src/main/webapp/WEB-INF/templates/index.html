@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>just for Test</title>
+</head>
+<body>
+    <header th:replace="header::header">
+        首部
+    </header>
+    <div class="secondary-nav" style="background-color:#fafafa;">
+        <div class="container">
+            <div class="row">
+                <div class="col-ml-2"></div>
+                <div class="col-ml-8">
+                    <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li><a href='#blog-tab' data-toggle='tab'>blog</a></li>
+                        <li><a href='#tab2' data-toggle='tab'>message</a></li>
+                        <li><a href='#tab3' data-toggle='tab'>analsize</a></li>
+                        <li><a href='#tab4' data-toggle='tab'>settings</a></li>
+                    </ul>
+                    </div>
+                </div>
+                 <div class="col-ml-2"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-content">
+    <div id ="blog-tab" class="tab-pane container">
+        <div class="row">
+            <div th:replace="left-side::left-side">
+                左边栏
+            </div>
+            <div th:replace="right-side::right-side">
+                右边栏
+            </div>
+        </div>
+    </div>
+        <div id ="tab2" class="tab-pane container">
+            ...static Message
+        </div>
+        <div id ="tab3" class="tab-pane container">
+            ...static analyze
+        </div>
+        <div id ="tab4" class="tab-pane container">
+            ...static settings
+        </div>
+    </div>
+    <footer th:replace="footer::footer">
+        页面静态底部
+    </footer>
+</body>
+</html>

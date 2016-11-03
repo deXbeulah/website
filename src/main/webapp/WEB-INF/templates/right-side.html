@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+    User:WangQiang
+    Time:2016 11 02
+    Description:
+-->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>right side</title>
+</head>
+<body>
+    <div th:fragment="right-side" class="col-ml-9">
+        <div class="tool-button">
+            <button class="btn btn-secondary pull-right">new</button>
+            <button class="btn btn-secondary pull-right">add</button>
+        </div>
+        <div class="blog-area">
+            <article>
+                如 果客户端在请求一个文件的时候，发现自己缓存的文件有 Last Modified ，那么在请求中会包含 If Modified Since ，这个时间就是缓存文件的 Last Modified 。因此，如果请求中包含 If Modified Since，就说明已经有缓存在客户端。只要判断这个时间和当前请求的文件的修改时间就可以确定是返回 304 还是 200 。对于静态文件，例如：CSS、图片，服务器会自动完成 Last Modified 和 If Modified Since 的比较，完成缓存或者更新。但是对于动态页面，就是动态产生的页面，往往没有包含 Last Modified 信息，这样浏览器、网关等都不会做缓存，也就是在每次请求的时候都完成一个 200 的请求。
+                因此，对于动态页面做缓存加速，首先要在 Response 的 HTTP Header 中增加 Last Modified 定义，其次根据 Request 中的 If Modified Since 和被请求内容的更新时间来返回 200 或者 304 。虽然在返回 304 的时候已经做了一次数据库查询，但是可以避免接下来更多的数据库查询，并且没有返回页面内容而只是一个 HTTP Header，从而大大的降低带宽的消耗，对于用户的感觉也是提高。
+                当这些缓存有效的时候，通过 HttpWatch 查看一个请求会得到这样的结果：
+                第一次访问 200
+                鼠标点击二次访问 (Cache)
+                按F5刷新 304
+                按Ctrl+F5强制刷新 200
+                如果是这样的就说明缓存真正有效了。以上就是我对 HTTP 304 的一个理解。
+
+                喜欢
+                推荐 2
+                回应 推荐 喜欢
+                Ｌ私房菜烹饪中
+                2012-07-18 22:53:34 Ｌ私房菜烹饪中 (绳锯木断，水滴石穿)
+                今天看到了这样的一个问题，首先去搜索304，没想到第一篇就链接你这里了，让我觉得不得不给你打个电话了。
+                ==================
+                问题
+                Hi,
+
+                我的程序返回的HTTP Header如下：
+
+                Cache-Control:
+                public, max-age=86400
+                Content-Length:
+                173113
+                Content-Type:
+                application/json; charset=utf-8
+                Date:
+                Wed, 18 Jul 2012 08:13:00 GMT
+                Expires:
+                Thu, 19 Jul 2012 08:13:00 GMT
+
+
+                我想的是，已经有"Expires"了，browser再次请求这个页面的时候，会直接从cache里取，而不用发请求到服务器。但是我每次刷新，都会发送请求到服务器。而且request header里都有“
+                Cache-Control:
+                max-age=0”。这样，我在server端，也不能通过header来判断是否可以返回304了。。。
+                =====================
+                有什么看法？
+
+                若初墨荷
+                2016-02-17 14:09:21 若初墨荷
+                在浏览器中点击刷新，无论是否过期，都会向服务器发送请求。如果用F5刷新，不过期且有缓存的页面直接取本地缓存。
+
+                fiveseeyou
+                2016-05-12 10:30:16 fiveseeyou
+                校对后才知道本地缓存有没有过期，服务器是否有新的内容更新。
+                request:If Modified Since;
+                server: Last Modified
+                在服务器端，二者进行校对
+
+
+                > 我来回应
+                tony_jane
+                tony_jane (福建厦门)
+                对自己好也是一种投资. 梦想很简单：一个靠谱的目标 + 有效的执行 真爱...
+
+                tony_jane的最新日记  · · · · · ·  ( 全部 )
+
+                php eio 扩展
+                tornado 多进程模式
+                base 标签
+                关联思路
+                我需要的一个 orm
+                热门话题 · · · · · ·
+
+                这些电影把我看饿了
+                美食电影的正确享用方式
+                我们这行因吹丝挺
+                聊聊令你哭笑不得的行业秘辛
+                逛菜市场
+                品尝人间烟火的情味
+                霾区生活
+                雾霾天里我们无法停止呼吸
+                故事新编
+                如果古代故事由你重新演绎
+                秋天里最好的事情
+                聊聊你打开这个秋天的方式
+                推荐这篇日记的豆列  · · · · · ·  ( 全部 )
+
+                304 No Modified
+                WEB开发学习
+                tony_jane的日记
+
+            </article>
+        </div>
+    </div>
+</body>
+</html>

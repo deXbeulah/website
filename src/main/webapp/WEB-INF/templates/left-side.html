@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+    User:WangQiang
+    Time:2016 11 02
+    Description:
+-->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>left side</title>
+</head>
+<body>
+<div th:fragment="left-side" class="col-md-3">
+    <div class="row">
+        <h4>plan lists</h4>
+    </div>
+    <div class="row">
+        <ul>
+            <li th:each="plan: ${list}">
+                <a th:href="@{/blogs/${plan.id}}" th:text="${plan.name}">plan1</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

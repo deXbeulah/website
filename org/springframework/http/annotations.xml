@@ -1,0 +1,5 @@
+<root>
+    <item name='org.springframework.http.MediaType APPLICATION_JSON_UTF8_VALUE'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

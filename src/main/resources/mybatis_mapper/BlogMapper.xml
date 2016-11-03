@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.ichenkaihua.mapper.BlogMapper">
+    <resultMap id="BaseResultMap" type="com.github.ichenkaihua.model.Blog">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="author_name" jdbcType="CHAR" property="authorName" />
+        <result column="blog_name" jdbcType="CHAR" property="blogName" />
+        <result column="blog_file" jdbcType="CHAR" property="blogFile" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="disable" jdbcType="INTEGER" property="disable" />
+    </resultMap>
+</mapper>
