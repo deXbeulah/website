@@ -61,4 +61,10 @@ public class UserService  {
     }
 
 
+    public User login(User user) {
+        System.out.println(user.getUserName());
+        System.out.println(user.getPassword());
+        List<User> users = userMapper.selectByNameAndPassword(user.getUserName(),user.getPassword());
+        return users.size()>0? users.get(0):null;
+    }
 }

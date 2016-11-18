@@ -16,43 +16,34 @@
     <div class="secondary-nav" style="background-color:#fafafa;">
         <div class="container">
             <div class="row">
-                <div class="col-ml-2"></div>
-                <div class="col-ml-8">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <div class="tabbable">
-                    <ul class="nav nav-tabs">
-                        <li><a href='#blog-tab' data-toggle='tab'>blog</a></li>
-                        <li><a href='#tab2' data-toggle='tab'>message</a></li>
-                        <li><a href='#tab3' data-toggle='tab'>analsize</a></li>
-                        <li><a href='#tab4' data-toggle='tab'>settings</a></li>
-                    </ul>
+                        <ul class="nav nav-tabs">
+                            <li><a th:href= "@{plans}" >plan</a></li>
+                            <li><a th:href="@{blogs}" >blog</a></li>
+                            <li><a href='#tab3' >analyze</a></li>
+                            <li><a href='#tab4' >settings</a></li>
+                        </ul>
                     </div>
                 </div>
-                 <div class="col-ml-2"></div>
+                 <div class="col-md-2"></div>
             </div>
         </div>
 
     </div>
-    <div class="tab-content">
-    <div id ="blog-tab" class="tab-pane container">
-        <div class="row">
-            <div th:replace="left-side::left-side">
-                左边栏
+        <div id ="plan-tab" class="tab-pane container">
+            <div class="row">
+                <div th:replace="left-side::left-side">
+                    左边栏
+                </div>
+                <div th:replace="right-side::right-side">
+                    右边栏
+                </div>
             </div>
-            <div th:replace="right-side::right-side">
-                右边栏
-            </div>
         </div>
-    </div>
-        <div id ="tab2" class="tab-pane container">
-            ...static Message
-        </div>
-        <div id ="tab3" class="tab-pane container">
-            ...static analyze
-        </div>
-        <div id ="tab4" class="tab-pane container">
-            ...static settings
-        </div>
-    </div>
+
+
     <footer th:replace="footer::footer">
         页面静态底部
     </footer>

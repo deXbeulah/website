@@ -6,7 +6,13 @@
       WARNING - @mbggenerated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="CHAR" property="name" />
-    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="password" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+
   </resultMap>
 </mapper>

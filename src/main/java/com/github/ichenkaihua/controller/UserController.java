@@ -54,7 +54,7 @@ public class UserController {
     })
     public ResponseEntity addUser(@ApiParam(value = "用户信息") @RequestBody User user) {
         User countUser = new User();
-        countUser.setName(user.getName());
+        countUser.setUserName(user.getUserName());
         //如果存在，返回错误码
         if (userService.isExist(countUser)) {
             return ErrorResponseEntity.buildToResponseEntity(1000, "手机号已经注册");
@@ -85,6 +85,7 @@ public class UserController {
         user.setId(id);
         userService.update(user);
     }
+
 
 
 }

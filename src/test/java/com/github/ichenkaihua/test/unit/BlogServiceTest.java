@@ -1,6 +1,7 @@
 package com.github.ichenkaihua.test.unit;
 
 import com.github.ichenkaihua.model.Blog;
+import com.github.ichenkaihua.model.User;
 import com.github.ichenkaihua.service.BlogService;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -9,30 +10,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * @author WangQiang
- * @Description ${DESCRIPTION}
- * @create 2016 11 01 15:40
+ * @Description: ${DESCRIPTION}
+ * @author: WangQiang
+ * @create: 2016-11-18 10:56
  */
-public class BlogServiceTest extends BaseUnitTest{
+public class BlogServiceTest extends BaseUnitTest {
     @Autowired
     BlogService blogService;
     @Test
-    public void addBlogTest(){
+    @Ignore
+    public void addBlog(){
         Blog blog = new Blog();
-        blog.setAuthorName("wq");
-        blog.setBlogFile("test");
-        blog.setBlogName("1.blog");
+        blog.setTitle("linux");
+        blog.setContent("sh");
         blogService.addBlog(blog);
     }
-
     @Test
-    @Ignore
-    public void searchBlogsTest(){
-        Blog blog = new Blog();
-        blog.setAuthorName("wq");
-        blog.setBlogFile("test");
-        blog.setBlogName("1.blog");
-        List<Blog> blogs = blogService.getBlogs(blog);
-        print("lenght",String.valueOf(blogs.size()));
+    public void getBlogByUser(){
+        User user = new User();
+        user.setId(1);
+
+        List<Blog> blogs=blogService.getBlogsByUser(user);
+        for (Blog blog:blogs){
+            print(blog.toString());
+        }
     }
 }

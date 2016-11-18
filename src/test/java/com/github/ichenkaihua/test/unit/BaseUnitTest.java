@@ -17,7 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Rollback
 @Transactional(transactionManager = "transactionManager")
 public class BaseUnitTest {
-
+    public void print(String value) {
+        System.out.println(value);
+    }
 
     public void print(String attribute, String value) {
         System.out.println(attribute + ": " + value);

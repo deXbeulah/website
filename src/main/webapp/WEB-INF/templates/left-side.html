@@ -16,8 +16,25 @@
     </div>
     <div class="row">
         <ul>
-            <li th:each="plan: ${list}">
-                <a th:href="@{/blogs/${plan.id}}" th:text="${plan.name}">plan1</a>
+            <li th:each="plan : ${plans}">
+                <a th:href="@{/plans/${plan.id}}" th:text="${plan.name}">plan demo</a>
+                <ul>
+                    <li  th:each="task : ${tasks}">
+                        <a th:if="${plan.id==task.planId}" th:href="@{/task/${task.id}}" th:text="${task.taskName}">task name</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div th:fragment="blog-nav" class="col-md-3">
+    <div class="row">
+        <h4>plan lists</h4>
+    </div>
+    <div class="row">
+        <ul>
+            <li th:each="blog : ${blogs}">
+                <a th:href="@{/blogs/${blog.id}}" th:text="${plan.name}">blog title</a>
             </li>
         </ul>
     </div>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RequestLogFilter extends AbstractFilter {
+public class RequestLogFilter extends AbstractFilter{
 
 	private static Logger logger=null;
 
@@ -59,6 +59,7 @@ public class RequestLogFilter extends AbstractFilter {
 
 		chain.doFilter(request, response);
 		long after = System.currentTimeMillis();
+
 		logger.info("请求结果:" + url + " status:" + response.getStatus());
 		logger.info("花费时间：" + (after - before) + "ms");
 
