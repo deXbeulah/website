@@ -3,10 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/common.css"/>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/common.css}"/>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <title>just for Test</title>
 </head>
 <body>
@@ -20,8 +20,8 @@
                 <div class="col-md-8">
                     <div class="tabbable">
                         <ul class="nav nav-tabs">
-                            <li><a th:href= "@{plans}" >plan</a></li>
-                            <li><a th:href="@{blogs}" >blog</a></li>
+                            <li><a th:href= "@{/plans}" >plan</a></li>
+                            <li><a th:href="@{/blog/listByUserId/__${user.id}__}" >blog</a></li>
                             <li><a href='#tab3' >analyze</a></li>
                             <li><a href='#tab4' >settings</a></li>
                         </ul>
@@ -32,9 +32,9 @@
         </div>
 
     </div>
-        <div id ="plan-tab" class="tab-pane container">
+        <div th:unless="${#lists.isEmpty(plans)}"id ="plan-tab" class="tab-pane container">
             <div class="row">
-                <div th:replace="left-side::left-side">
+                <div th:replace="left-side::plan-nav">
                     左边栏
                 </div>
                 <div th:replace="right-side::right-side">
@@ -42,7 +42,6 @@
                 </div>
             </div>
         </div>
-
 
     <footer th:replace="footer::footer">
         页面静态底部

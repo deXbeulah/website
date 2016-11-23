@@ -1,7 +1,7 @@
 package com.github.ichenkaihua.controller;
 
 
-import com.github.ichenkaihua.model.CurrentUser;
+import com.github.ichenkaihua.model.CurentUser;
 import com.github.ichenkaihua.model.Plan;
 import com.github.ichenkaihua.model.Task;
 import com.github.ichenkaihua.model.User;
@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,8 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.github.ichenkaihua.utils.Constant.currentUser;
+
 
 /**
  * @Description: ${DESCRIPTION}
@@ -31,6 +34,8 @@ import java.util.List;
  * @create: 2016-11-16 15:30
  */
 @Controller
+@RequestMapping("")
+@Scope("session")
 public class LoginController implements Constant{
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
     @ModelAttribute(value = "user")
@@ -44,16 +49,18 @@ public class LoginController implements Constant{
     PlanService planService;
     @Autowired
     TaskService taskService;
-    @RequestMapping(value = "/index", produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/index", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public String initLogin(ModelMap model){
         return "login";
     }
-    @RequestMapping(value = "/homepage", method = RequestMethod.GET)
-    public String initIndexPage(Model model, HttpSession httpSession){
+
+    @RequestMapping(value = "/homepage")
+    public String initIndexPage(Model model){
 
         List<Plan> plans = new ArrayList<Plan>();
         List<Task> tasks = new ArrayList<Task>();
-        User user = CurrentUser.getCurUser();
+        User user = CurentUser.val();
+        logger.info("-------------------------------------------"+currentUser.toString());
         if(user==null){
             return "redirect:index";
         }
@@ -63,16 +70,21 @@ public class LoginController implements Constant{
             model.addAttribute("tasks", tasks);
         }
         model.addAttribute("plans", plans);
+        model.addAttribute("user",user);
         return  "index";
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiOperation(value = "登录")
-    public String login(@ModelAttribute User user, Model model, HttpSession httpSession) {
+    public String login(@ModelAttribute User user, Model model) {
+//        User currentUser = userService.login(user);
         User loginUser = userService.login(user);
 
         if(loginUser!=null){
-            CurrentUser.setCurUser(loginUser);
-            return "redirect:/homepage";
+//                httpSession.setAttribute(currentUser,loginUser);
+//            logger.info("login ------------------------------------------"+currentUser.getId());
+            CurentUser.setCurUser(loginUser);
+            return "forward:/homepage?method=get";
         }else{
             model.addAttribute("error","用户名或密码错误");
             return  "login";
